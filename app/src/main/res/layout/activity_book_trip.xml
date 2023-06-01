@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".bookTrip">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="410sp"
+        android:layout_height="87dp"
+        android:background="#9C27B0"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="Book Trip"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="500sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="350sp">
+
+            <EditText
+                android:id="@+id/fromLocText"
+                android:layout_width="100sp"
+                android:layout_height="fill_parent"
+                android:inputType="textPersonName"
+                android:text="From:"
+                android:textSize="25sp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/toLocText"
+                android:layout_width="100sp"
+                android:layout_height="fill_parent"
+                android:hint="To:"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:inputType="textPersonName" />
+
+
+            <EditText
+                android:id="@+id/departDateText"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:hint="Depart"
+                android:inputType="datetime"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                tools:ignore="TextFields" />
+            <EditText
+                android:id="@+id/returnDateText"
+                android:layout_height="match_parent"
+                android:width="100sp"
+                android:hint="Return"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-black"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
