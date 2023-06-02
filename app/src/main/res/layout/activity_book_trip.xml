@@ -26,63 +26,63 @@
         android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="500sp"
+        android:weightSum="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="350sp">
+            android:layout_width="match_parent"
+            android:layout_height="350sp"
+            android:layout_weight="1">
 
             <EditText
                 android:id="@+id/fromLocText"
-                android:layout_width="100sp"
+                android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:inputType="textPersonName"
                 android:text="From:"
                 android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/toLocText"
-                android:layout_width="100sp"
+                android:layout_width="92dp"
                 android:layout_height="fill_parent"
                 android:hint="To:"
+                android:inputType="text"
                 android:textSize="25sp"
-                android:textStyle="bold"
-                android:inputType="textPersonName" />
+                android:textStyle="bold" />
 
 
-            <EditText
+            <TextView
                 android:id="@+id/departDateText"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:hint="Depart"
-                android:inputType="datetime"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                tools:ignore="TextFields" />
-            <EditText
-                android:id="@+id/returnDateText"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:width="100sp"
-                android:hint="Return"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif-black"/>
+                android:gravity="center"
+                android:text="@string/departure_date" />
+
+            <TextView
+                android:id="@+id/returnDateText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Return Date" />
+
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="200sp"
+            android:layout_weight="1">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <Spinner
+                android:id="@+id/selectPassengers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="passengers" />
+        </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

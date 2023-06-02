@@ -3,4 +3,11 @@
     <string name="welcome_to_nomad">Welcome to Nomad</string>
     <string name="new_trip">New Trip</string>
     <string name="departure_date">Departure Date</string>
+
+    <string-array name="passengerType">
+        <item>Adults</item>
+        <item>Youth</item>
+        <item>Child</item>
+        <item>Infant</item>
+    </string-array>
 </resources>
