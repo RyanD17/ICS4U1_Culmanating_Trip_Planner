@@ -2,6 +2,7 @@ package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -16,25 +17,26 @@ import android.widget.Toast;
 
 import android.os.Bundle;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class bookTrip extends MainActivity {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_trip);
 
-        Spinner passengers = findViewById(R.id.selectPassengers);
-        TextView departDate = findViewById(R.id.departDateText);
-        TextView returnDate = findViewById(R.id.returnDateText);
+        setDepartDate();
+        setReturnDate();
+        setAdults();
 
-        ArrayAdapter<CharSequence>adapter=ArrayAdapter.createFromResource(this, R.array.passengerType, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        passengers.setAdapter(adapter);
+    }
+
+    public void setDepartDate() {
+        TextView departDate = findViewById(R.id.departDateText);
 
         departDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +59,10 @@ public class bookTrip extends MainActivity {
                 mDatePicker.show();
             }
         });
+    }
 
+    public void setReturnDate() {
+        TextView returnDate = findViewById(R.id.returnDateText);
         returnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,4 +85,31 @@ public class bookTrip extends MainActivity {
             }
         });
     }
+
+    void setAdults() {
+        FloatingActionButton addAdults = findViewById(R.id.addAdult);
+        FloatingActionButton removeAdults = findViewById(R.id.removeAdult);
+        TextView numAdultsCounter = findViewById(R.id.numAdultCounter);
+        final int[] numAdults = {0};
+
+        addAdults.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numAdults[0]++;
+                numAdultsCounter.setText(Integer.toString(numAdults[0]));
+            }
+        });
+
+        removeAdults.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numAdults[0] -= 1;
+                numAdultsCounter.setText(Integer.toString(numAdults[0]));
+            }
+        });
+    }
+
+
+
+
 }
