@@ -3,6 +3,7 @@
     <string name="welcome_to_nomad">Welcome to Nomad</string>
     <string name="new_trip">New Trip</string>
     <string name="departure_date">Departure Date</string>
+    <string name="one_way">ONE WAY</string>
 
     <string-array name="passengerType">
         <item>Adults</item>

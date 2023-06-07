@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cityAdder">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="400dp"
+        android:layout_height="118dp"
+        android:background="#E91E63"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:includeFontPadding="true"
+        android:text="Add Stops"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="412dp"
+        android:layout_height="608dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/flightNumText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Flight 1"
+                    android:textSize="20dp"/>
+
+                <EditText
+                    android:id="@+id/FromLoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:ems="4"
+                    android:hint="From:"
+                    android:inputType="text" />
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="To:"
+                android:id="@+id/toLoc"
+                android:ems="4"
+                android:inputType="text"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="4"
+                android:text="Depart Date"
+                android:gravity="center_vertical"
+                android:id="@+id/departDate"/>
+
+            <Space
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="4"
+                android:text="Return Date"
+                android:gravity="center_vertical"
+                android:id="@+id/returnDate"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="118dp"
+            android:layout_weight="0"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/addFlightBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:clickable="true"
+                android:text="Add Flight"
+                android:textSize="25dp" />
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
