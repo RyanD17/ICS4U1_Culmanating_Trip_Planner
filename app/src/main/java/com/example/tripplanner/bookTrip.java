@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -31,14 +32,26 @@ public class bookTrip extends MainActivity {
         setChild();
         setInfant();
         appStopAction();
+        getFromText();
+        getToText();
 
     }
 
-    public void setFromText(){
+    public String getFromText(){
         String fromLoc = "";
+        EditText fromInput = findViewById(R.id.fromLocText);
+        fromLoc = fromInput.getText().toString();
 
+        return  fromLoc;
 
+    }
 
+    public String getToText (){
+        String toLoc = "";
+        EditText toInput = findViewById(R.id.fromLocText);
+        toLoc = toInput.getText().toString();
+
+        return toLoc;
     }
 
     public void setDepartDate() {
@@ -187,7 +200,6 @@ public class bookTrip extends MainActivity {
             public void onClick(View view) {
                 Intent openCityAdder = new Intent(bookTrip.this, cityAdder.class);
                 startActivity(openCityAdder);
-
             }
         });
 

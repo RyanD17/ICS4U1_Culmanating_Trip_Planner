@@ -12,8 +12,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button newTrip;
-    BottomNavigationView navView;
+    Button newTrip; // creating a button object called newTrip
+    BottomNavigationView navView; //Creating a Bottom Naviation View object called navView
 
     @SuppressLint("MissingInflatedId")
     @Override
