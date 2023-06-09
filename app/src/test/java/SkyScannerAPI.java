@@ -1,16 +1,11 @@
 // Import Unirest and JSON libraries
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 // Import SkyscannerAPI class
 import com.example.skyscannerapi.SkyscannerAPI;
-
-// Create a callback interface for handling responses
-public interface ResponseCallback {
-    void onSuccess(HttpResponse<JsonNode> response);
-    void onFailure(UnirestException e);
-}
 
 
 public class SkyScannerAPI {
@@ -24,7 +19,7 @@ public class SkyScannerAPI {
         try {
             HttpResponse<JsonNode> sessionResponse = Unirest.post("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/v1.0")
                     .header("X-RapidAPI-Host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com")
-                    .header("X-RapidAPI-Key", "YOUR_RAPIDAPI_KEY")
+                    .header("X-RapidAPI-Key", "prtl6749387986743898559646983194")
                     .header("Content-Type", "application/x-www-form-urlencoded")
                     .field("inboundDate", inboundDate)
                     .field("cabinClass", "economy")
@@ -48,7 +43,7 @@ public class SkyScannerAPI {
                 // Poll the session results with the session key
                 HttpResponse<JsonNode> resultsResponse = Unirest.get("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/pricing/uk2/v1.0/" + sessionKey + "?pageIndex=0&pageSize=10")
                         .header("X-RapidAPI-Host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com")
-                        .header("X-RapidAPI-Key", "YOUR_RAPIDAPI_KEY")
+                        .header("X-RapidAPI-Key", "prtl6749387986743898559646983194")
                         .asJson();
 
                 // Check if the results were retrieved successfully
