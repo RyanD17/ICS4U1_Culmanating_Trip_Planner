@@ -7,19 +7,9 @@ import java.util.Scanner;
 
 public class SkyscannerFlightSearch {
 
-    //set the API key
     private static final String API_KEY = "prtl6749387986743898559646983194";
 
-    public static void main(String[] args) throws IOException {
-        // Ryan, need you to link these to the outputs from the page
-        String locationFrom = ;
-        String locationTo = ;
-        String dateFrom = ;
-        String dateTo = ;
-        int adults = ;
-        int youth = ;
-        int children = ;
-
+    public static String[] getFlightDetails(String locationFrom, String locationTo, String dateFrom, String dateTo, int adults, int youth, int children) throws IOException {
         // Create the URL for the Skyscanner API.
         URL url = new URL("https://partners.api.skyscanner.net/apiservices/pricing/v1.0/");
 
@@ -53,6 +43,8 @@ public class SkyscannerFlightSearch {
         String outboundTime = responseScanner.next();
         String inboundTime = responseScanner.next();
         String bestPrice = responseScanner.next();
-        //Ryan Grab these responses and output them
+
+        // Return the results.
+        return new String[] {outboundTime, inboundTime, bestPrice};
     }
 }
