@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,6 +27,22 @@ public class MainActivity extends AppCompatActivity {
         newTrip = findViewById(R.id.new_trip); // same thing as above but for new trip
         newTripIsPressed(); // calling the newTripIsPressed() method
 
+        Button searchButton = findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] flightDetails = getFlightDetails(locationFrom, locationTo, dateFrom, dateTo, adults, youth, children);
+
+                TextView outboundTimeTextView = findViewById(R.id.outboundTime);
+                outboundTimeTextView.setText(flightDetails[0]);
+
+                TextView inboundTimeTextView = findViewById(R.id.inboundTime);
+                inboundTimeTextView.setText(flightDetails[1]);
+
+                TextView bestPriceTextView = findViewById(R.id.bestPrice);
+                bestPriceTextView.setText(flightDetails[2]);
+            }
+        });
     }
 
 
