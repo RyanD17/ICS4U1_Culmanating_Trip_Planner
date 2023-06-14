@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] flightDetails = getFlightDetails(locationFrom, locationTo, dateFrom, dateTo, adults, youth, children);
+                String[] flightDetails = SkyscannerFlightSearch.getFlightDetails(locationFrom, locationTo, dateFrom, dateTo, adults, youth, children);
 
                 TextView outboundTimeTextView = findViewById(R.id.outboundTime);
                 outboundTimeTextView.setText(flightDetails[0]);
