@@ -12,25 +12,24 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button newTrip; // creating a button object called newTrip
-    BottomNavigationView navView; //Creating a Bottom Naviation View object called navView
+    protected Button newTrip; // creating a button object called newTrip
+    protected BottomNavigationView navView; //Creating a Bottom Naviation View object called navView
 
     @SuppressLint("MissingInflatedId")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //When the activity has started, then the mainActivity screen is going to open
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navView = findViewById(R.id.navBar);
+        navView = findViewById(R.id.navBar); //setting the nav view variable to it's id in the mainactivity.xml file
 
-        newTrip = findViewById(R.id.new_trip);
-
-        newTripIsPressed();
+        newTrip = findViewById(R.id.new_trip); // same thing as above but for new trip
+        newTripIsPressed(); // calling the newTripIsPressed() method
 
     }
 
 
-
+//calling the bookTrip class and using an intent to open the bookTrip page
     public void newTripIsPressed(){
         newTrip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +39,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 }

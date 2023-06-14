@@ -1,5 +1,7 @@
 package com.example.tripplanner;
 
+
+//import statements
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,9 +10,11 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+
+//this class inherits from the bookTrip class
 public class cityAdder extends bookTrip {
 
-    private TableLayout tableMain;
+    private TableRow tableMain;
     private TextView cloneButton;
 
 
@@ -23,14 +27,18 @@ public class cityAdder extends bookTrip {
         cloneButton = findViewById(R.id.addFlightBtn);
 
 
+        //when the clone button is pressed, then this will run
         cloneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                LayoutInflater layoutInflater = getLayoutInflater();
+                LayoutInflater inflater = getLayoutInflater();
 
-                @SuppressLint("ResourceType") TableRow clone = (TableRow) layoutInflater.inflate(R.id.rowToClone, tableMain, true);
-                clone.setId(View.generateViewId());
+                TableRow newRow = (TableRow) inflater.inflate(R.layout.activity_city_adder,null);
+
+
+                tableMain.addView(newRow);
+
 
             }
         });
