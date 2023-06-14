@@ -4,6 +4,9 @@
     <string name="new_trip">New Trip</string>
     <string name="departure_date">Departure Date</string>
     <string name="one_way">ONE WAY</string>
+    <string name="outbound_time">Outbound time:</string>
+    <string name="inbound_time">Inbound time:</string>
+    <string name="best_price">Best price:</string>
 
     <string-array name="passengerType">
         <item>Adults</item>
