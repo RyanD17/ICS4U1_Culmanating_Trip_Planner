@@ -24,6 +24,8 @@
         <activity
             android:name=".bookTrip"
             android:exported="true" />
+        <activity android:name=".apiDisplay"
+            android:exported="true"/>
     </application>
 
 </manifest>

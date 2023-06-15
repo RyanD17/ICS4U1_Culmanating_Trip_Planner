@@ -17,6 +17,8 @@ import java.util.concurrent.ExecutionException;
 
 public class SkyscannerFlightSearch {
 
+
+
     private static final String API_KEY = "prtl6749387986743898559646983194";
 
     public static class FlightDetailsTask extends AsyncTask<String, Void, List<String>> {
@@ -101,17 +103,15 @@ public class SkyscannerFlightSearch {
             // Do nothing.
         }
         public static List<String> getFlightDetails(String fromDate, String toDate, String fromLocation, String toLocation, String adults, String children, String infants) {
-
             FlightDetailsTask task = new FlightDetailsTask();
             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, fromDate, toDate, fromLocation, toLocation, adults, children, infants);
             try {
                 return task.get();
-            } catch (ExecutionException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
+            } catch (ExecutionException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
+
 //test comment
     }
 }

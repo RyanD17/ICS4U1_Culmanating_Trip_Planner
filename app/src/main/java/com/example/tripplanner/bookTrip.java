@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.ExecutionException;
 
 public class bookTrip extends MainActivity {
 
@@ -81,9 +82,9 @@ public class bookTrip extends MainActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         Calendar calendar = Calendar.getInstance();
                         calendar.set(year, monthOfYear, dayOfMonth);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                        String dateString = dateFormat.format(calendar.getTime());
-                        departDate.setText(dateString);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
+                        departDateStr = dateFormat.format(calendar.getTime());  // Store the selected date in departDateStr
+                        departDate.setText(departDateStr);
                     }
                 }, mYear, mMonth, mDay);
                 mDatePicker.setTitle("Select Departure Date");
@@ -107,9 +108,9 @@ public class bookTrip extends MainActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         Calendar calendar = Calendar.getInstance();
                         calendar.set(year, monthOfYear, dayOfMonth);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                        String dateString = dateFormat.format(calendar.getTime());
-                        returnDate.setText(dateString);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
+                        returnDateStr = dateFormat.format(calendar.getTime());  // Store the selected date in returnDateStr
+                        returnDate.setText(returnDateStr);
                     }
                 }, mYear, mMonth, mDay);
                 mDatePicker.setTitle("Select Return Date");
@@ -118,6 +119,7 @@ public class bookTrip extends MainActivity {
         });
         return returnDate.toString();
     }
+
 
     public int setAdults() {
         FloatingActionButton addAdults = findViewById(R.id.addAdult);
@@ -186,32 +188,18 @@ public class bookTrip extends MainActivity {
         return child;
     }
 
-    public void runAPI(){
-
+    public void runAPI() {
         Button runAPIbtn = findViewById(R.id.startAPI);
 
         runAPIbtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                String[] flightDetails = new String[0];
-                try {
-                    flightDetails = SkyscannerFlightSearch.getFlightDetails(fromLoc, toLoc, departDateStr, returnDateStr, numAdults, numYouth, child);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
 
-                TextView outboundTimeTextView = findViewById(R.id.outboundTime);
-                outboundTimeTextView.setText(flightDetails[0]);
-
-                TextView inboundTimeTextView = findViewById(R.id.inboundTime);
-                inboundTimeTextView.setText(flightDetails[1]);
-
-                TextView bestPriceTextView = findViewById(R.id.bestPrice);
-                bestPriceTextView.setText(flightDetails[2]);
+                Intent apiDisplay = new Intent(bookTrip.this, SkyscannerFlightSearch.class);
+                startActivity(apiDisplay);
             }
         });
-
-
     }
-
 }
+
