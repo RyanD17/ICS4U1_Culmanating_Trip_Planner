@@ -1,7 +1,7 @@
 package com.example.tripplanner;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.tripplanner.SkyscannerFlightSearch;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,9 +30,13 @@ public class MainActivity extends AppCompatActivity {
         Button searchButton = findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            //setting stuff to change the text based on the api
             public void onClick(View v) {
-                String[] flightDetails = SkyscannerFlightSearch.getFlightDetails(locationFrom, locationTo, dateFrom, dateTo, adults, youth, children);
 
+                // Call the getFlightDetails() method to get the flight details.
+                String[] flightDetails = SkyscannerFlightSearch.getFlightDetails(fromDate, toDate, fromLocation, toLocation, adults, children, infants);
+
+                // Display the flight details to the user.
                 TextView outboundTimeTextView = findViewById(R.id.outboundTime);
                 outboundTimeTextView.setText(flightDetails[0]);
 
