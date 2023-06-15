@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -15,11 +16,23 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class bookTrip extends MainActivity {
 
+    public String fromLoc = "";
+    public String toLoc = "";
+
+    public String departDateStr;
+
+    public String returnDateStr;
+
+    public int numYouth = 0;
+    public int numAdults = 0;
+
+    public int child = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,15 +43,14 @@ public class bookTrip extends MainActivity {
         setAdults();
         setYouth();
         setChild();
-        setInfant();
-        appStopAction();
         getFromText();
         getToText();
+        runAPI();
 
     }
 
     public String getFromText(){
-        String fromLoc = "";
+
         EditText fromInput = findViewById(R.id.fromLocText);
         fromLoc = fromInput.getText().toString();
 
@@ -47,14 +59,14 @@ public class bookTrip extends MainActivity {
     }
 
     public String getToText (){
-        String toLoc = "";
+
         EditText toInput = findViewById(R.id.fromLocText);
         toLoc = toInput.getText().toString();
 
         return toLoc;
     }
 
-    public void setDepartDate() {
+    public String setDepartDate() {
         TextView departDate = findViewById(R.id.departDateText);
 
         departDate.setOnClickListener(new View.OnClickListener() {
@@ -78,9 +90,10 @@ public class bookTrip extends MainActivity {
                 mDatePicker.show();
             }
         });
+        return departDate.toString();
     }
 
-    public void setReturnDate() {
+    public String setReturnDate() {
         TextView returnDate = findViewById(R.id.returnDateText);
         returnDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,105 +116,101 @@ public class bookTrip extends MainActivity {
                 mDatePicker.show();
             }
         });
+        return returnDate.toString();
     }
 
-    void setAdults() {
+    public int setAdults() {
         FloatingActionButton addAdults = findViewById(R.id.addAdult);
         FloatingActionButton removeAdults = findViewById(R.id.removeAdult);
         TextView numAdultsCounter = findViewById(R.id.numAdultCounter);
-        final int[] numAdults = {0};
 
         addAdults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                numAdults[0]++;
-                numAdultsCounter.setText(Integer.toString(numAdults[0]));
+                numAdults ++;
+                numAdultsCounter.setText(Integer.toString(numAdults));
             }
         });
 
         removeAdults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                numAdults[0] -= 1;
-                numAdultsCounter.setText(Integer.toString(numAdults[0]));
+                numAdults -= 1;
+                numAdultsCounter.setText(Integer.toString(numAdults));
             }
         });
+        return numAdults;
     }
 
-    void setYouth(){
+   public int setYouth(){
         FloatingActionButton addYouth = findViewById(R.id.addYouth);
         FloatingActionButton removeYouth = findViewById(R.id.removeYouth);
-        TextView numYouth = findViewById(R.id.numYouthCounter);
-        final int[] numYouthCounter = {0};
+        TextView numYouthText = findViewById(R.id.numYouthCounter);
 
         addYouth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                numYouthCounter[0] += 1;
-                numYouth.setText(Integer.toString(numYouthCounter[0]));
+                numYouth += 1;
+                numYouthText.setText(Integer.toString(numYouth));
             }
         });
         removeYouth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                numYouthCounter[0] -= 1;
-                numYouth.setText(Integer.toString(numYouthCounter[0]));
+                numYouth -= 1;
+                numYouthText.setText(Integer.toString(numYouth));
             }
         });
+        return numYouth;
     }
-    void setChild(){
+   public int setChild(){
         FloatingActionButton addChild = findViewById(R.id.addChild);
         FloatingActionButton removeChild =  findViewById(R.id.removeChild);
-        TextView numChild = findViewById(R.id.numChildCounter);
-        final int[] numChildCounter = {0};
+        TextView numChildText = findViewById(R.id.numChildCounter);
 
         addChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                numChildCounter[0] += 1;
-                numChild.setText(Integer.toString(numChildCounter[0]));
+                child += 1;
+                numChildText.setText(Integer.toString(child));
             }
         });
 
         removeChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                numChildCounter[0] -= 1;
-                numChild.setText(Integer.toString(numChildCounter[0]));
+                child -= 1;
+                numChildText.setText(Integer.toString(child));
             }
         });
+        return child;
     }
-    void setInfant(){
-        FloatingActionButton addInfant = findViewById(R.id.addInfant);
-        FloatingActionButton removeInfant = findViewById(R.id.removeInfant);
-        TextView numInfant = findViewById(R.id.numInfantCounter);
-        final int[] numInfantCounter = {0};
 
-        addInfant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                numInfantCounter[0] += 1;
-                numInfant.setText(Integer.toString(numInfantCounter[0]));
-            }
-        });
-        removeInfant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                numInfantCounter[0] -= 1;
-                numInfant.setText(Integer.toString(numInfantCounter[0]));
-            }
-        });
-    }
-    public void appStopAction(){
-        FloatingActionButton addStop = findViewById(R.id.addStop);
+    public void runAPI(){
 
-        addStop.setOnClickListener(new View.OnClickListener() {
+        Button runAPIbtn = findViewById(R.id.startAPI);
+
+        runAPIbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent openCityAdder = new Intent(bookTrip.this, cityAdder.class);
-                startActivity(openCityAdder);
+            public void onClick(View v) {
+                String[] flightDetails = new String[0];
+                try {
+                    flightDetails = SkyscannerFlightSearch.getFlightDetails(fromLoc, toLoc, departDateStr, returnDateStr, numAdults, numYouth, child);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                TextView outboundTimeTextView = findViewById(R.id.outboundTime);
+                outboundTimeTextView.setText(flightDetails[0]);
+
+                TextView inboundTimeTextView = findViewById(R.id.inboundTime);
+                inboundTimeTextView.setText(flightDetails[1]);
+
+                TextView bestPriceTextView = findViewById(R.id.bestPrice);
+                bestPriceTextView.setText(flightDetails[2]);
             }
         });
+
 
     }
 
