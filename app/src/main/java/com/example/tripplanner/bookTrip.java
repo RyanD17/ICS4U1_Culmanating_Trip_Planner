@@ -1,6 +1,5 @@
 package com.example.tripplanner;
 
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,51 +21,62 @@ import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
 public class bookTrip extends MainActivity {
-
+    // creating public instance variables
     public String fromLoc = "";
     public String toLoc = "";
 
     public String departDateStr;
-
     public String returnDateStr;
 
     public int numYouth = 0;
     public int numAdults = 0;
-
     public int child = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_trip);
 
+        // Set the departure date
         setDepartDate();
-        setReturnDate();
-        setAdults();
-        setYouth();
-        setChild();
-        getFromText();
-        getToText();
-        runAPI();
 
+        // Set the return date
+        setReturnDate();
+
+        // Set the number of adults
+        setAdults();
+
+        // Set the number of youth
+        setYouth();
+
+        // Set the number of children
+        setChild();
+
+        // Get the "From" location text
+        getFromText();
+
+        // Get the "To" location text
+        getToText();
+
+        // Run the API
+        runAPI();
     }
 
+    // Get the "From" location text
     public String getFromText(){
-
         EditText fromInput = findViewById(R.id.fromLocText);
         fromLoc = fromInput.getText().toString();
-
-        return  fromLoc;
-
+        return fromLoc;
     }
 
+    // Get the "To" location text
     public String getToText (){
-
         EditText toInput = findViewById(R.id.fromLocText);
         toLoc = toInput.getText().toString();
-
         return toLoc;
     }
 
+    // Set the departure date
     public String setDepartDate() {
         TextView departDate = findViewById(R.id.departDateText);
 
@@ -82,8 +92,8 @@ public class bookTrip extends MainActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         Calendar calendar = Calendar.getInstance();
                         calendar.set(year, monthOfYear, dayOfMonth);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
-                        departDateStr = dateFormat.format(calendar.getTime());  // Store the selected date in departDateStr
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        departDateStr = dateFormat.format(calendar.getTime());
                         departDate.setText(departDateStr);
                     }
                 }, mYear, mMonth, mDay);
@@ -94,6 +104,7 @@ public class bookTrip extends MainActivity {
         return departDate.toString();
     }
 
+    // Set the return date
     public String setReturnDate() {
         TextView returnDate = findViewById(R.id.returnDateText);
         returnDate.setOnClickListener(new View.OnClickListener() {
@@ -108,8 +119,8 @@ public class bookTrip extends MainActivity {
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         Calendar calendar = Calendar.getInstance();
                         calendar.set(year, monthOfYear, dayOfMonth);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/mm/dd");
-                        returnDateStr = dateFormat.format(calendar.getTime());  // Store the selected date in returnDateStr
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/mm/yyyy");
+                        returnDateStr = dateFormat.format(calendar.getTime());
                         returnDate.setText(returnDateStr);
                     }
                 }, mYear, mMonth, mDay);
@@ -120,7 +131,7 @@ public class bookTrip extends MainActivity {
         return returnDate.toString();
     }
 
-
+    // Set the number of adults
     public int setAdults() {
         FloatingActionButton addAdults = findViewById(R.id.addAdult);
         FloatingActionButton removeAdults = findViewById(R.id.removeAdult);
@@ -144,7 +155,8 @@ public class bookTrip extends MainActivity {
         return numAdults;
     }
 
-   public int setYouth(){
+    // Set the number of youth
+    public int setYouth(){
         FloatingActionButton addYouth = findViewById(R.id.addYouth);
         FloatingActionButton removeYouth = findViewById(R.id.removeYouth);
         TextView numYouthText = findViewById(R.id.numYouthCounter);
@@ -156,6 +168,7 @@ public class bookTrip extends MainActivity {
                 numYouthText.setText(Integer.toString(numYouth));
             }
         });
+
         removeYouth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,7 +178,9 @@ public class bookTrip extends MainActivity {
         });
         return numYouth;
     }
-   public int setChild(){
+
+    // Set the number of children
+    public int setChild(){
         FloatingActionButton addChild = findViewById(R.id.addChild);
         FloatingActionButton removeChild =  findViewById(R.id.removeChild);
         TextView numChildText = findViewById(R.id.numChildCounter);
@@ -188,18 +203,16 @@ public class bookTrip extends MainActivity {
         return child;
     }
 
+    // Run the API
     public void runAPI() {
         Button runAPIbtn = findViewById(R.id.startAPI);
 
         runAPIbtn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
                 Intent apiDisplay = new Intent(bookTrip.this, SkyscannerFlightSearch.class);
                 startActivity(apiDisplay);
             }
         });
     }
 }
-

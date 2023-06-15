@@ -12,17 +12,27 @@ public class apiDisplay extends bookTrip {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.api_dsplay);
 
-
+        // Declare a string array to store flight details
         String[] flightDetails;
+
         try {
-            flightDetails = new SkyscannerFlightSearch.FlightDetailsTask().execute(fromLoc, toLoc, departDateStr, returnDateStr, Integer.toString(numAdults), Integer.toString(numYouth), Integer.toString(child)).get().toArray(new String[0]);
+            // Execute the FlightDetailsTask and retrieve the result
+            flightDetails = new SkyscannerFlightSearch.FlightDetailsTask()
+                    .execute(fromLoc, toLoc, departDateStr, returnDateStr,
+                            Integer.toString(numAdults), Integer.toString(numYouth),
+                            Integer.toString(child))
+                    .get()
+                    .toArray(new String[0]);
+
         } catch (ExecutionException e) {
             throw new RuntimeException(e.getCause());
         } catch (InterruptedException e) {
+            // Interrupt the current thread
             Thread.currentThread().interrupt();
             throw new RuntimeException(e);
         }
 
+        // Set the flight details to the corresponding TextViews
         TextView outboundTimeTextView = findViewById(R.id.outboundTime);
         outboundTimeTextView.setText(flightDetails[0]);
 
@@ -31,8 +41,5 @@ public class apiDisplay extends bookTrip {
 
         TextView bestPriceTextView = findViewById(R.id.bestPrice);
         bestPriceTextView.setText(flightDetails[2]);
-
-
-
     }
 }

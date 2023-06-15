@@ -107,10 +107,16 @@ public class SkyscannerFlightSearch {
             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, fromDate, toDate, fromLocation, toLocation, adults, children, infants);
             try {
                 return task.get();
-            } catch (ExecutionException | InterruptedException e) {
-                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                // Handle ExecutionException
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                // Handle InterruptedException
+                e.printStackTrace();
             }
+            return null; // Return an appropriate value or handle the error case
         }
+
 
 //test comment
     }
